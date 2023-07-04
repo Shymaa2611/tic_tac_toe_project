@@ -1,7 +1,7 @@
 var roomCode = document.getElementById("game_board").getAttribute("room_code");
 var char_choice = document.getElementById("game_board").getAttribute("char_choice");
 
-var connectionString = 'ws://' + window.location.host + '/ws/play/' + roomCode + '/';
+var connectionString = 'ws://' + window.location.host +':'+'/ws/game/' + roomCode + '/';
 var gameSocket = new WebSocket(connectionString);
 // Game board for maintaing the state of the game
 var gameBoard = [
@@ -65,6 +65,7 @@ function make_move(index, player){
             return false;
         }
         gameSocket.send(JSON.stringify(data))
+    
     } 
     // place the move in the game box.
     elementArray[index].innerHTML = player;
@@ -86,6 +87,7 @@ function make_move(index, player){
             }
             gameSocket.send(JSON.stringify(data))
         }
+
     }
 }
 
@@ -146,7 +148,6 @@ function connect() {
             connect();
         }, 1000);
     };
-    // Sending the info about the room
     gameSocket.onmessage = function (e) {
         // On getting the message from the server
         // Do the appropriate steps on each event.
@@ -173,10 +174,10 @@ function connect() {
                 console.log("No event")
         }
     };
-
+    
     if (gameSocket.readyState == WebSocket.OPEN) {
         gameSocket.onopen();
-    }
+    }   // Sending the info about the room
 }
 
 //call the connect function at the start.

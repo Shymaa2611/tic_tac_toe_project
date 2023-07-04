@@ -5,10 +5,10 @@ def index(request):
         room_code = request.POST.get("room_code")
         char_choice = request.POST.get("character_choice")
         return redirect(
-            '/play/%s?&choice=%s' 
+            '/game/%s?&choice=%s' 
             %(room_code, char_choice)
         )
-    return render(request, "index.html", {})
+    return render(request, "pages/index.html")
 
 
 def game(request, room_code):
@@ -19,4 +19,4 @@ def game(request, room_code):
         "char_choice": choice, 
         "room_code": room_code
     }
-    return render(request, "game.html", context)
+    return render(request, "pages/game.html", context)
