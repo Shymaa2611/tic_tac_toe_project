@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from pages.views import index,game
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('pages.urls'))
+   # path('',include('pages.urls')),
+    path('', index),
+    path('play/<room_code>', game),
 ]

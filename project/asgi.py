@@ -5,7 +5,7 @@ from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 import pages.routing
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tic_tac_toe.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
 
 # application = get_asgi_application()
 application = ProtocolTypeRouter({
